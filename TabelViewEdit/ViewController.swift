@@ -13,12 +13,14 @@ class ViewController: UIViewController {
     
     let screenWidth     = UIScreen.mainScreen().bounds.size.width
     let screenHeight    = UIScreen.mainScreen().bounds.size.height
+    let identifier      = "cellID"
     
     lazy var tableView:UITableView = {
         let tableView = UITableView(frame: CGRectMake(0, 0, self.screenWidth, self.screenHeight), style: .Plain)
+        tableView.rowHeight = 100
+        tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: self.identifier)
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.rowHeight = 100
         return tableView
     }()
 
@@ -45,9 +47,9 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(style: .Subtitle, reuseIdentifier: "")
-        cell.textLabel?.text = dataList[indexPath.row] as? String ?? ""
         
+        let cell = tableView.dequeueReusableCellWithIdentifier(identifier, forIndexPath: indexPath)
+        cell.textLabel?.text = dataList[indexPath.row] as? String ?? ""
         return cell
     }
     
