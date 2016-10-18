@@ -127,7 +127,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     //结束编辑
-    func tableView(tableView: UITableView, didEndEditingRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(tableView: UITableView, didEndEditingRowAtIndexPath indexPath: NSIndexPath?) {
         print("\(#function)")
     }
     
